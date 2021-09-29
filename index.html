@@ -30,9 +30,28 @@
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
-    </div>
+        <div class = time></div>
+        <div class= hour></div>
+        <div class= hour></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <form>
+          <div class="form-group">
+            <textarea name="description" id="description-input" class="form-control"
+              placeholder=""></textarea>
+          </div>
+          <button class="saveBtn"></button>
+        </form>
+        
+        <div class="row" id="inputDisplay">
+
+
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!--Moved this to this line so that it can be reference the Jquery source without issue-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!--Moved this to this line so that it can be reference the moments source without issue--->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="script.js"></script> <!--Added to reference -->
   </body>
 </html>
