@@ -1,5 +1,5 @@
 # Day_Planner
-# 05 Third-Party APIs: Work Day Scheduler
+# AKA Work Day Scheduler
 
 ## Your Task
 
