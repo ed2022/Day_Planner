@@ -6,48 +6,61 @@ setInterval(() => {
 }, 1000);
 
 
+//creating the time loop with this each function to help go through each of the time blocks and checking and chaning colors accordingly. Tried using the ".each" method but started to highlight everything. This works best for me in my case. 
 //changing the color of the timer - use moment and jQuery 
 var timeBlockEL = $('.time-block'); //Calling on the block
 var currentHour = moment().hour(); //Calling on the current time in hour
 var textareaEL = $(this).children().eq(1); // Calling on the text area
-console.log(currentHour); //variable Check 
-//creating the time loop with this each function to help go through "EACH" of the time blocks and checking and chaning colors accordingly 
-function colorChanges(hour){ 
-    timeBlockEL.each(function(){
-      var blocks = parseInt($('.container').children().attr('id')); //this is going to target and place in an array the objects in the container which is 9am-6pm = 10 total values
-      console.log(blocks); //variable check
+//console.log(currentHour); //variable Check 
+function colorChange(hour){ 
+   for (let i = 0; i < timeBlockEL.length; i++) {
+      var blocks = parseInt($('.container').children().eq(i).attr('id'));
+      // console.log("Blocks: " + blocks); // console.log("Hour Now: " + hour); 
       if(blocks == hour){
-        console.log(blocks == hours)
-        $(this).removeClass("past")
-        $(this).removeClass("future")
-        $(this).addClass("present");
-      }
+        $("textarea").eq(i).removeClass("past");
+        $("textarea").eq(i).removeClass("future");
+        $("textarea").eq(i).addClass("present");
+      } //this ensures that only the textarea colors change! 
       else if(blocks < hour){
-        console.log(blocks)
-        $(this).removeClass("present")
-        $(this).removeClass("future")
-        $(this).addClass("past");
+        $("textarea").eq(i).removeClass("present");
+        $("textarea").eq(i).removeClass("future");
+        $("textarea").eq(i).addClass("past");
       }
       else{
-        console.log(blocks)
-        $(this).removeClass("present")
-        $(this).removeClass("past")
-        $(this).addClass("future");
+        $("textarea").eq(i).removeClass("present");
+        $("textarea").eq(i).removeClass("past");
+        $("textarea").eq(i).addClass("future");
       }
-    });
-  console.log("works");
+   }
+console.log("works");
 }
-colorChanges(currentHour);
+colorChange(currentHour);//calling the funcation 
 
-//intake all the input and store them in local storage while keeping the input still on screen - use jQuery 
 //Here is where we can intake the notes and store it as localStorage(); 
-var descriptionEL = $('.description');
 var saveBTNEl= $('.saveBtn');
 
-saveBTNEl.on('click', function() {
-  var ID = $('.container').children().attr('id');
-  var notes = descriptionEL.val();
-  localStorage.setItem(ID, notes);
-})
+function saved (){
+  saveBTNEl.on("click",function(event){
+    event.preventDefault();
+    for (let i = 0; i < timeBlockEL.length; i++){
+      var descrip = $(this).siblings().eq(1); //textarea/descrption space
+      console.log(descrip);
+      var ID = $(this).parent().attr('id'); //actual id where the text space is located
+      console.log(ID)
+      var mainText = descrip.val();
+      localStorage.setItem(ID, mainText);
+    }
+  })
+  console.log(savedArray);
+}
+saved();
 
+//Here is the funcation that can get the data from local storage and display it on to the screen
+function show(){
+  var display = JSON.parse(localStorage.getItem(ID, mainText));
+  for (let i = 0; i < timeBlockEL.length; i++) {
+    
+  }
+}
+show();
 
