@@ -51,16 +51,30 @@ function saved (){
       localStorage.setItem(ID, mainText);
     }
   })
-  console.log(savedArray);
 }
 saved();
 
 //Here is the funcation that can get the data from local storage and display it on to the screen
 function show(){
-  var display = JSON.parse(localStorage.getItem(ID, mainText));
+  console.log("Show works");
+  console.log(localStorage.getItem(localStorage.getItem("ID")));
   for (let i = 0; i < timeBlockEL.length; i++) {
-    
+    var hourID = $(this).attr("id");
+    if(timeBlockEL[i] == hourID){
+      $('.textarea').text(JSON.parse(localStorage.getItem('hourID')));
+    }
   }
 }
 show();
+
+function show2(){
+  $(".time-block").each(function() {
+    var hourID = $(this).attr("id");
+    console.log(hourID);
+    // load saved data from local storage
+    console.log(JSON.parse(localStorage.getItem(JSON.stringify(hourID))));;
+    $('.textarea').text(JSON.parse(localStorage.getItem('hourID')));
+  });
+}
+show2();
 
