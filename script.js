@@ -9,6 +9,7 @@ setInterval(() => {
 //creating the time loop with this each function to help go through each of the time blocks and checking and chaning colors accordingly. Tried using the ".each" method but started to highlight everything. This works best for me in my case. 
 //changing the color of the timer - use moment and jQuery 
 var timeBlockEL = $('.time-block'); //Calling on the block
+console.log(timeBlockEL);
 var currentHour = moment().hour(); //Calling on the current time in hour
 var textareaEL = $(this).children().eq(1); // Calling on the text area
 //console.log(currentHour); //variable Check 
@@ -56,25 +57,12 @@ saved();
 
 //Here is the funcation that can get the data from local storage and display it on to the screen
 function show(){
-  console.log("Show works");
-  console.log(localStorage.getItem(localStorage.getItem("ID")));
-  for (let i = 0; i < timeBlockEL.length; i++) {
-    var hourID = $(this).attr("id");
-    if(timeBlockEL[i] == hourID){
-      $('.textarea').text(JSON.parse(localStorage.getItem('hourID')));
-    }
+  for (let i = 9; i < 18; i++) {
+    var keyVal = localStorage.getItem(i); //getting local storage only the Value 
+    var timeBlockSection = $("#" + i).children().eq(1); //calling in the ID from the area 
+    timeBlockSection.val(keyVal);//attaching the value to show this as display
   }
 }
-show();
+show();//constant call on function 
 
-function show2(){
-  $(".time-block").each(function() {
-    var hourID = $(this).attr("id");
-    console.log(hourID);
-    // load saved data from local storage
-    console.log(JSON.parse(localStorage.getItem(JSON.stringify(hourID))));;
-    $('.textarea').text(JSON.parse(localStorage.getItem('hourID')));
-  });
-}
-show2();
 
